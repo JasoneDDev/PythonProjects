@@ -1,11 +1,11 @@
 import numpy as np
 import time as t
 import random as r
-
+from playerClass import player
 
 # things to add: except statements, break classes out into separate objects
 # decorators? @ ... do high score.. save out to file and read in from file (high score is time based)
-# add pillars vs rocks into dungeon which acts as a wall
+# add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
 
 
 def intro():
@@ -56,10 +56,12 @@ def updatePosition(dirMoved):
             player_instance.direction -= 1
             if player_instance.direction <= -1:
                 player_instance.direction = 3
+            print(moveFeedback(str(directionList[player_instance.direction]), 'left'))
         elif direction == 'right':
             player_instance.direction +=1
             if player_instance.direction >= 4:
                 player_instance.direction = 0
+            print(moveFeedback(str(directionList[player_instance.direction]), 'right'))
         print( player_instance.pos, " ", player_instance.direction)
 
         # her we check if the players position is the same as an item and if so we tell them
@@ -68,6 +70,11 @@ def updatePosition(dirMoved):
         locatedItem = findItemInList(player_instance.pos, itemLocations)
         if locatedItem != '':
             print('we found a {0} '.format(locatedItem), player_instance.pos)
+            if locatedItem == 'key':
+                print('Now if you remember where the door is we can get out of this dismal place.\n')
+                updatePosition(waitingForMove())
+
+
         else:
             updatePosition(waitingForMove())
     except ValueError as e:
@@ -82,13 +89,7 @@ def findItemInList(pair, aList):  # checks for coordinate pair in list
             return ''
 
 
-class player:
-    def __init__(self):
-        self.pos = [] # coordinates in the grid
-        self.direction = int() # north, south, east, west
-        self.inventory = {}
 
-    print('player created', '\n')
 
 # key location is now randomized per session
 
