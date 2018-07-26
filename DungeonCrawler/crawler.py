@@ -1,9 +1,13 @@
 import numpy as np
 import time as t
 import random as r
+
+
 # things to add: except statements, break classes out into separate objects
 # decorators? @ ... do high score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall
+
+
 def intro():
     print('As the rain comes down you look around and see a small door in the side of the cliffside.' ,'\n',
           'You run over and quickly run in.')
@@ -13,16 +17,19 @@ def intro():
     print('The door slams behind you and you hear it lock.', '\n')
     updatePosition(waitingForMove())
 
-def updatePosition(dirMoved):
 
+def updatePosition(dirMoved):
+    direction = dirMoved
+
+    def moveFeedback(cardinal):
+        feedback = "You're now heading " + cardinal + " \n As you clumsily move " + str(direction) + " you take in your new surroundings."
+        return feedback
     try:
-        direction = dirMoved
 
         if direction == 'ahead':
             if player_instance.direction == 0 and player_instance.pos[0] <= 7: # pointing south
                 player_instance.pos[0] += 1
-                print("You're now heading South", '\n')
-                print('As you clumsily move ' + direction + ' you take in your new surroundings.')
+                print(moveFeedback('South'))
             elif player_instance.direction == 1 and player_instance.pos[1] >= 1: # pointing west
                 player_instance.pos[1] -= 1
                 print("You're now heading West", '\n')
