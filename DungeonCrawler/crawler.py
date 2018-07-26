@@ -21,8 +21,14 @@ def intro():
 def updatePosition(dirMoved):
     direction = dirMoved
 
-    def moveFeedback(cardinal):
-        feedback = "You're now heading " + cardinal + " \n As you clumsily move " + str(direction) + " you take in your new surroundings."
+    def moveFeedback(cardinal, dir = 'ahead'):
+
+        if dir is 'ahead':
+            feedback = "You're now heading " + cardinal + ". As you clumsily move " + str(direction) + " you take in your new surroundings.\nAll you can see surrounding you is darkness.\n"
+        elif dir is 'back':
+            feedback = "You take a step back.\nYou're still facing " + cardinal + '\n'
+        else:
+            feedback = "You're now facing " + cardinal + '\n'
         return feedback
     try:
 
@@ -44,6 +50,7 @@ def updatePosition(dirMoved):
 
         elif direction == 'back':
             player_instance.pos[0] -= 1
+            print(moveFeedback(str(directionList[player_instance.direction]), 'back'))
 
         elif direction == 'left':
             player_instance.direction -= 1
@@ -88,6 +95,7 @@ class player:
 
 itemLocations = [[0,4],[r.randrange(0,8),r.randrange(0,8)],[4,4],[6,6]]
 itemDefs = [['exit', 1], ['key', 3], ['pillar', 2], ['pillar', 4]]
+directionList = ['South', 'West', 'North', 'East']
 
 
 def buildRoom(x, y, itemList):
