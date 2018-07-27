@@ -4,4 +4,4 @@ class player:
         self.direction = int() # north, south, east, west
         self.inventory = {}
 
-    print('player created', '\n')
+    # print('player created', '\n')

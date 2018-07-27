@@ -4,13 +4,14 @@ import random as r
 from playerClass import player
 
 # things to add: except statements, yields, x = true value if cond else false value
-# decorators? @ (can use profiler as decorator) ... do high score.. save out to file and read in from file (high score is time based)
+# High score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
+# add map to use, we'll show current location and traveled areas
 
 
 def intro():
-    print('As the rain comes down you look around and see a small door in the side of the cliffside.' ,'\n',
-          'You run over and quickly run in.')
+    bigText('dungeon crawler')
+    print('As the rain comes down you look around and see a small door in the side of the cliffside.\nYou run over and quickly run in.')
     t.sleep(2)
     print("As you enter you realise it's pitch black inside but it's too late!", '\n')
     t.sleep(2)
@@ -32,7 +33,7 @@ def updatePosition(dirMoved):
             feedback = "You're now facing " + cardinal + '\n'
         return feedback
     try:
-        if direction == 'p':
+        if direction == 'm': # map
             print(dungeon)
             updatePosition(waitingForMove())
 
@@ -77,6 +78,7 @@ def updatePosition(dirMoved):
         if locatedItem != '':
             print('we found a {0} '.format(locatedItem), player_instance.pos)
             if locatedItem == 'key':
+                bigText('do do do DOOOO')
                 player_instance.inventory[1] = locatedItem
                 [item_row, item_column] = player_instance.pos
                 dungeon[item_row][item_column] = 0
@@ -118,6 +120,48 @@ def findItemInList(pair):  # checks for coordinate pair in list
 itemLocations = [[0, 4], [r.randrange(0, 8), r.randrange(0, 8)]]
 itemDefs = [['exit', 1], ['key', 3]]
 directionList = ['South', 'West', 'North', 'East']
+
+
+#  Here we print out a big format do do do DOOOOO vs playing audio
+
+
+def bigText(st):
+    if st == "dungeon crawler":
+        x = 75
+        y = 5
+        for i in range(0, 11):
+            print('')
+            for j in range(0, 76):
+                if i == 0 and ((0 < j < 6) or (j == 10 or j == 17) or (j == 21 or j == 28) or (35 < j < 41) or (45 < j < 53) or (58 < j < 62) or (j == 67 or j == 75)):  # first line
+                    print('@', end='')
+                elif i == 1 and ((j == 1 or j == 7) or (j == 10 or j ==17) or (j == 21 or j == 28 or j == 23) or (j == 34) or (j == 46) or (j == 57 or j == 63) or (j == 67 or j == 69 or j == 75)):  # line 2
+                    print('@', end='')
+                elif i == 2 and ((j == 1 or j == 7) or (j == 10 or j ==17) or (j == 21 or j == 28 or j == 24) or (j == 33 or 38 < j < 42) or (45 < j < 52) or (j == 56 or j == 64) or (j == 67 or j == 70 or j == 75)):  # line 3
+                    print('@', end='')
+                elif i == 3 and ((j == 1 or j == 7) or (j == 10 or j ==17) or (j == 21 or j == 28 or j == 25) or (j == 33 or j == 41) or (j == 46) or (j == 57 or j == 63) or (j == 67 or j == 72 or j == 75)):  # D line 4
+                    print('@', end='')
+                elif i == 4 and ((0 < j < 6) or (11 < j < 16) or (j == 21 or j == 28 or j == 27) or (34 < j < 40) or (45 < j < 53) or (58 < j < 62) or (j == 67 or j == 74 or j == 75)):  # D line 5
+                    print('@', end='')
+                elif i == 5 and (3 < j < 7):
+                    print('@', end='')
+                elif i == 6 and (j == 2 or j == 7):
+                    print('@', end='')
+                elif i == 7 and (j == 1):
+                    print('@', end='')
+                elif i == 8 and (j == 1):
+                    print('@', end='')
+                elif i == 9 and (j == 2 or j == 7):
+                    print('@', end='')
+                elif i == 10 and (3 < j < 7):
+                    print('@', end='')
+                else:
+                    print(' ', end='')
+
+        print(st + '\n')
+    elif st == 'do do do DOOOO':
+        print(st + '\n')
+    else:
+        pass
 
 
 def buildRoom(x, y, itemList):
