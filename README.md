@@ -8,10 +8,11 @@ The key's location is randomized per game instance.
 - make simple text based title " Dungeon Crawler "
 - try and load sound file? do do do DOOOOO when we find the key etc.
 
-# - profiler script -
+# - Profiler -
 can be added and called on any function to return a profiler file to them be viewed with pstats etc.
 
-# small script to run a command prompt and return things like largest file on harddrive etc.
+# - Command Prompt -
+return things like largest file on harddrive etc. to show accessing and running shell commands.
 
 # - Hangman game - 
 
