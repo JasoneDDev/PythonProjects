@@ -3,8 +3,8 @@ import time as t
 import random as r
 from playerClass import player
 
-# things to add: except statements... more except statements
-# decorators? @ ... do high score.. save out to file and read in from file (high score is time based)
+# things to add: except statements, yields, x = true value if cond else false value
+# decorators? @ (can use profiler as decorator) ... do high score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
 
 
