@@ -4,6 +4,7 @@
 # use to grab stats...
 # import pstats
 # p = pstats.Stats('filename here')
+# p.sort_stats('time') --- sort by what you want to look at
 # p.print_Stats(3) --- 3 for top 3 or however many we need
 
 import cProfile
