@@ -1,6 +1,11 @@
 # use this as a decorator to profile a function
 # @profileMe
 
+# use to grab stats...
+# import pstats
+# p = pstats.Stats('filename here')
+# p.print_Stats(3) --- 3 for top 3 or however many we need
+
 import cProfile
 
 def profileMe(fn):
