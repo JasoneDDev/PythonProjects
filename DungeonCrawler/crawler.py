@@ -2,7 +2,6 @@ import numpy as np
 import time as t
 import random as r
 from playerClass import player
-import cProfile
 
 # things to add: except statements... more except statements
 # decorators? @ ... do high score.. save out to file and read in from file (high score is time based)
@@ -155,8 +154,6 @@ def waitingForMove():  # takes first letter of the word typed to lowercase and p
 player_instance = player()
 dungeon = buildRoom(8, 8, itemLocations)
 
-if __name__ == '__main__':
-    cProfile.run('main()')
     
 print(intro())
 
