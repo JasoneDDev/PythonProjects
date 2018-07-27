@@ -34,9 +34,12 @@ def updatePosition(dirMoved):
             feedback = "You're now facing " + cardinal + '\n'
         return feedback
     try:
+        if direction == 'p':
+            print(dungeon)
+            updatePosition(waitingForMove())
 
         if direction == 'a':
-            if player_instance.direction == 0 and player_instance.pos[0] <= 7: # pointing south
+            if player_instance.direction == 0 and player_instance.pos[0] < 7: # pointing south
                 player_instance.pos[0] += 1
                 print(moveFeedback('South'))
             elif player_instance.direction == 1 and player_instance.pos[1] >= 1: # pointing west
@@ -45,7 +48,7 @@ def updatePosition(dirMoved):
             elif player_instance.direction == 2 and player_instance.pos[0] >= 1: # pointing north
                 player_instance.pos[0] -= 1
                 print(moveFeedback('North'))
-            elif player_instance.direction == 3 and player_instance.pos[1] <= 7: # pointing east
+            elif player_instance.direction == 3 and player_instance.pos[1] < 7: # pointing east
                 player_instance.pos[1] += 1
                 print(moveFeedback('East'))
             else :
@@ -70,11 +73,28 @@ def updatePosition(dirMoved):
         # her we check if the players position is the same as an item and if so we tell them
         # and let them choose to interact with the item
 
-        locatedItem = findItemInList(player_instance.pos, itemLocations)
+        locatedItem = ''
+        if player_instance.pos[0] >= 0 and player_instance.pos[0] < 8 and \
+                player_instance.pos[1] >= 0 and player_instance.pos[1] < 8:
+            locatedItem = findItemInList(player_instance.pos)
         if locatedItem != '':
             print('we found a {0} '.format(locatedItem), player_instance.pos)
             if locatedItem == 'key':
+                player_instance.inventory[1] = locatedItem
+                [item_row, item_column] = player_instance.pos
+                dungeon[item_row][item_column] = 0
+                print('Added {0} to your inventory'.format(locatedItem))
                 print('Now if you remember where the door is we can get out of this dismal place.\n')
+                updatePosition(waitingForMove())
+            elif locatedItem == 'exit' and 'key' in player_instance.inventory.values():
+                print('You found the door!\n'
+                      'You quickly pull out the key from your pocket and slip it into the keyhole.\n'
+                      'You feel a sigh of relief as the key turns and you hear a click. The door swings open and you '
+                      'smell fresh air as you run out of the dungeon!\n'
+                      'You made it!')
+            elif locatedItem == 'exit':
+                print("You found the door, but it seems it's locked. You must have to find something to open it, "
+                      "like a key.\n")
                 updatePosition(waitingForMove())
 
 
@@ -84,18 +104,22 @@ def updatePosition(dirMoved):
         print('Hit an error: ' + str(e))
 
 
-def findItemInList(pair, aList):  # checks for coordinate pair in list
-    for i in range(1, len(aList)):
-        if aList[i] == pair:
-            return itemDefs[i][0]
-        else:
-            return ''
+def findItemInList(pair):  # checks for coordinate pair in list
+
+    objectFound = int(dungeon[pair[0]][pair[1]])
+    if objectFound != 0:
+        for i in range(0, len(itemDefs)):
+            if itemDefs[i][1] == objectFound:
+                return itemDefs[i][0]
+
+    else:
+        return ''
 
 # key location is now randomized per session
 
 
-itemLocations = [[0, 4], [r.randrange(0, 8), r.randrange(0, 8)], [4, 4], [6, 6]]
-itemDefs = [['exit', 1], ['key', 3], ['pillar', 2], ['pillar', 4]]
+itemLocations = [[0, 4], [r.randrange(0, 8), r.randrange(0, 8)]]
+itemDefs = [['exit', 1], ['key', 3]]
 directionList = ['South', 'West', 'North', 'East']
 
 
@@ -108,6 +132,8 @@ def buildRoom(x, y, itemList):
     for i in itemList:
         if itemCount == -1:
             player_instance.pos = i
+            [item_row, item_column] = i
+            room[item_row][item_column] = itemDefs[0][1]
             itemCount += 1
             continue
         itemCount += 1
@@ -115,6 +141,7 @@ def buildRoom(x, y, itemList):
         room[item_row][item_column] = itemDefs[itemCount][1]
 
     np.asarray(room).reshape(8,8)
+    print(room)
     return room
 
 
@@ -122,12 +149,15 @@ def waitingForMove():  # takes first letter of the word typed to lowercase and p
     keyPress = ''
     while keyPress == '':
         keyPress = input('Choose a direction - ahead, back, left right: ')
+
     return keyPress[0].lower()
 
 
 player_instance = player()
-print(buildRoom(8, 8, itemLocations))
+dungeon = buildRoom(8, 8, itemLocations)
+
 print(intro())
+
 
 
 
