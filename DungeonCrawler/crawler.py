@@ -6,8 +6,6 @@ from playerClass import player
 # things to add: except statements... more except statements
 # decorators? @ ... do high score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
-# key when found needs to be stored in a list/etc to be used when we return to the door.
-# not adding the need to actually pick up the key, this will be automatic
 
 
 def intro():
