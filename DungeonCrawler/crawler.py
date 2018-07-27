@@ -72,8 +72,7 @@ def updatePosition(dirMoved):
         # and let them choose to interact with the item
 
         locatedItem = ''
-        if player_instance.pos[0] >= 0 and player_instance.pos[0] < 8 and \
-                player_instance.pos[1] >= 0 and player_instance.pos[1] < 8:
+        if 0 <= player_instance.pos[0] < 8 and 0 <= player_instance.pos[1] < 8:
             locatedItem = findItemInList(player_instance.pos)
         if locatedItem != '':
             print('we found a {0} '.format(locatedItem), player_instance.pos)
