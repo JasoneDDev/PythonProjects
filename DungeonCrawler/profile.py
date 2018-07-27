@@ -1,9 +1,9 @@
 # use this as a decorator to profile a function
 # @profileMe
 
-# use to grab stats from the code being profiled...
+# use to grab stats from profile file created after profiling...
 # import pstats
-# p = pstats.Stats('filename with profiler decorator in it here')
+# p = pstats.Stats('*.profile file')
 # p.sort_stats('time') --- sort by what you want to look at
 # p.print_Stats(3) --- 3 for top 3 or however many we need
 
