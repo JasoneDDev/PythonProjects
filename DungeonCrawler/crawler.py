@@ -3,11 +3,10 @@ import time as t
 import random as r
 from playerClass import player
 
-# things to add: except statements, yields, x = true value if cond else false value
+# things to add: except statements, yields
 # High score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
 # add map to use, we'll show current location and traveled areas
-# fix bug where door is overwritten by random key
 
 
 def intro():
@@ -116,9 +115,14 @@ def findItemInList(pair):  # checks for coordinate pair in list
         return ''
 
 # key location is now randomized per session
+def randomKey():
+    pair = [0, 4]
+    while pair == [0, 4]:
+        pair[0] = r.randrange(0, 8)
+        pair[1] = r.randrange(0, 8)
+    return pair
 
-
-itemLocations = [[0, 4], [r.randrange(0, 8), r.randrange(0, 8)]]
+itemLocations = [[0, 4], randomKey()]
 itemDefs = [['exit', 1], ['key', 3]]
 directionList = ['South', 'West', 'North', 'East']
 
