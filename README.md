@@ -5,7 +5,6 @@ The game starts with you entering a door in the side of a mountain side, the doo
 The key's location is randomized per game instance.
 - add map to be found and when found we can display it at each step etc we take.
 - need to add unit testing.
-- make simple text based title " Dungeon Crawler "
 - try and load sound file? do do do DOOOOO when we find the key etc.
 
 # - Profiler -
