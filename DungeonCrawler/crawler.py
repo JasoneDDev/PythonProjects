@@ -142,17 +142,17 @@ def bigText(st):
                     print('@', end='')
                 elif i == 4 and ((0 < j < 6) or (11 < j < 16) or (j == 21 or j == 28 or j == 27) or (34 < j < 40) or (45 < j < 53) or (58 < j < 62) or (j == 67 or j == 74 or j == 75)):  # D line 5
                     print('@', end='')
-                elif i == 5 and (3 < j < 7):
+                elif i == 5 and ((3 < j < 7) or (9 < j < 16) or (22 < j < 25)):
                     print('@', end='')
-                elif i == 6 and (j == 2 or j == 7):
+                elif i == 6 and ((j == 2 or j == 7) or (j == 10 or j == 16) or (j == 22 or j == 25)):
                     print('@', end='')
-                elif i == 7 and (j == 1):
+                elif i == 7 and ((j == 1) or (j == 10 or j == 17) or (j == 21 or j == 26)):
                     print('@', end='')
-                elif i == 8 and (j == 1):
+                elif i == 8 and ((j == 1) or (j == 10 or j == 16 or j == 15 or j == 14) or (20 < j < 27)):
                     print('@', end='')
-                elif i == 9 and (j == 2 or j == 7):
+                elif i == 9 and ((j == 2 or j == 7) or (j == 10 or j == 15) or (j == 20 or j == 27)):
                     print('@', end='')
-                elif i == 10 and (3 < j < 7):
+                elif i == 10 and ((3 < j < 7) or (j == 10 or j == 16) or (j == 19 or j == 28)):
                     print('@', end='')
                 else:
                     print(' ', end='')
