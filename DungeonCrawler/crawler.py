@@ -7,6 +7,7 @@ from playerClass import player
 # High score.. save out to file and read in from file (high score is time based)
 # add pillars vs rocks into dungeon which acts as a wall, cannot walk into that space
 # add map to use, we'll show current location and traveled areas
+# fix bug where door is overwritten by random key
 
 
 def intro():
