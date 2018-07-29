@@ -8,7 +8,7 @@ The key's location is randomized per game instance.Added player walking history 
 # - Profiler -
 can be added and called on any function to return a profiler file to them be viewed with pstats etc.
 
-# - Simple QTPy GUI - 
+# - Simple PyQT4 GUI - 
 
 # Other test scripts
 Just some test scripts to remind me how to use certain features and to help me decipher how libraries etc work as I get more familiar with Python and it's libraries etc.
