@@ -1,5 +1,6 @@
 # PythonProjects
 # - Dungeon Crawler - 
+<img ref=dungeoncrawler.png></img>
 Simple text style dungeon crawler to better my undertstanding of the Python syntax, methods, decorators etc.
 The game starts with you entering a door in the side of a mountain side, the door slams behind you and now you're trapped. You need to find you way through the (currently 8x8) dungeon to find the key and make your way back to the door to exit and escape.
 The key's location is randomized per game instance.Added player walking history map so player has some sense of where they are and where to look next. 
