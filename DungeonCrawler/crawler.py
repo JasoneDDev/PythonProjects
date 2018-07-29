@@ -24,6 +24,10 @@ def updatePosition(dirMoved):
 
     def moveFeedback(cardinal, dir = 'a'):
 
+        # updating map
+
+        player_instance.mapHistory = mapBuilder(player_instance.pos, player_instance.mapHistory)
+
         if dir is 'a':
             feedback = "You're now heading " + cardinal + ". As you clumsily move ahead." +\
                        " you take in your new surroundings.\nAll you can see surrounding you is darkness.\n"
@@ -33,8 +37,8 @@ def updatePosition(dirMoved):
             feedback = "You're now facing " + cardinal + '\n'
         return feedback
     try:
-        if direction == 'm': # map
-            print(dungeon)
+        if direction == 'm':  # map
+            print(player_instance.mapHistory)
             updatePosition(waitingForMove())
 
         if direction == 'a':
@@ -67,7 +71,7 @@ def updatePosition(dirMoved):
             if player_instance.direction >= 4:
                 player_instance.direction = 0
             print(moveFeedback(str(directionList[player_instance.direction]), 'r'))
-        print( player_instance.pos, " ", player_instance.direction)
+
 
         # her we check if the players position is the same as an item and if so we tell them
         # and let them choose to interact with the item
@@ -76,9 +80,9 @@ def updatePosition(dirMoved):
         if 0 <= player_instance.pos[0] < 8 and 0 <= player_instance.pos[1] < 8:
             locatedItem = findItemInList(player_instance.pos)
         if locatedItem != '':
-            print('we found a {0} '.format(locatedItem), player_instance.pos)
+            print('----------------- we found a {0} ----------------------------'.format(locatedItem))
             if locatedItem == 'key':
-                bigText('do do do DOOOO')
+                bigText('do do do DOOOO!!!!!!!!!')
                 player_instance.inventory[1] = locatedItem
                 [item_row, item_column] = player_instance.pos
                 dungeon[item_row][item_column] = 0
@@ -127,8 +131,6 @@ itemDefs = [['exit', 1], ['key', 3]]
 directionList = ['South', 'West', 'North', 'East']
 
 
-#  Here we print out a big format do do do DOOOOO vs playing audio
-
 
 def bigText(st):
     if st == "dungeon crawler":
@@ -169,11 +171,25 @@ def bigText(st):
         pass
 
 
+
+def mapBuilder(coords, map):
+    xy = coords
+    tempMap = map
+    if tempMap == []:
+        tempMap = np.zeros([8, 8], dtype=np.int)
+        tempMap[:, :] = 1
+        tempMap[0, 4] = 8
+    elif coords != [0, 4]:
+        tempMap[coords[0], coords[1]] = 0
+    return tempMap
+
+
+
 def buildRoom(x, y, itemList):
     xAxis = x
     yAxis = y
     itemCount = -1
-    room = np.zeros([y, x])
+    room = np.zeros([y, x], dtype = np.int)
 
     for i in itemList:
         if itemCount == -1:
@@ -187,19 +203,20 @@ def buildRoom(x, y, itemList):
         room[item_row][item_column] = itemDefs[itemCount][1]
 
     np.asarray(room).reshape(8,8)
-    print(room)
     return room
 
 
 def waitingForMove():  # takes first letter of the word typed to lowercase and passes it along.
     keyPress = ''
     while keyPress == '':
-        keyPress = input('Choose a direction - ahead, back, left right: ')
+        print('(m)ap, (a)head, (b)ack, (l)eft (r)ight')
+        keyPress = input('Please choose a direction: ')
 
     return keyPress[0].lower()
 
 
 player_instance = player()
+player_instance.mapHistory = mapBuilder(player_instance.pos, player_instance.mapHistory)
 dungeon = buildRoom(8, 8, itemLocations)
 
     
