@@ -8,8 +8,12 @@ The key's location is randomized per game instance.Added player walking history 
 # - Profiler -
 can be added and called on any function to return a profiler file to them be viewed with pstats etc.
 
-# - Simple PyQT Fish Viewer -
+# - PyQt : Fish Viewer -
 Fish PyQT image viewer with labels. Three fish pics to cycle through with title. Pretty simple example.
+# - PyQt : Notepad app -
+simple notepad app I am making and adding to.
+# - PyQt : Sticky Note creator -
+saving notes to a txt file as sticky notes which can then be read in and displayed as a to do list... still in progress
 
 # Other test scripts
 Just some test scripts to remind me how to use certain features and to help me decipher how libraries etc work as I get more familiar with Python and it's libraries etc.
