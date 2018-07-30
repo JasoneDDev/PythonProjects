@@ -23,7 +23,7 @@ class NotePad(QMainWindow):
         # actions
 
         open_action = QAction('Open File', self)
-        open_action.setShortcut('Ctrl+n')
+        open_action.setShortcut('Ctrl+o')
         save_action = QAction('Save File', self)
         save_action.setShortcut('Ctrl+s')
         new_action = QAction('New File', self)
