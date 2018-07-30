@@ -1,27 +1,75 @@
 import os
 import sys
-from PyQt5.QtWidgets import QApplication, QTextEdit, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QFileDialog
+from PyQt5.QtWidgets import QApplication, QTextEdit, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QFileDialog, QMainWindow, QAction, qApp
 
 # This will be a sticky note type app, we'll let the user type in a reminder note and it will save it to a file we can
 # then make another app or adjust this one to display the sticky notes or something
 
-
-class NotePad(QWidget):
+class NotePad(QMainWindow):
     def __init__(self):
-        super(NotePad, self).__init__()
+        super().__init__()
+
+        self.form_widget = Writer()
+        self.setCentralWidget(self.form_widget)
+
+        bar = self.menuBar()
+
+        # menus
+
+        file = bar.addMenu('File')
+        edit = bar.addMenu('Edit')
+
+        # actions
+
+        open_action = QAction('Open File', self)
+        open_action.setShortcut('Ctrl+n')
+        save_action = QAction('Save File', self)
+        save_action.setShortcut('Ctrl+s')
+        new_action = QAction('New File', self)
+        new_action.setShortcut('Ctrl+n')
+        quit_action = QAction('Quit', self)
+        quit_action.setShortcut('Ctrl+q')
+
+        find_action = QAction('Find', self)
+
+        replace_action = QAction('Replace', self)
+
+
+        # adding actions
+
+        file.addActions([new_action, open_action, save_action, quit_action])
+
+        find_menu = edit.addMenu('Find')
+        find_menu.addActions([find_action, replace_action])
+
+        # events
+
+        open_action.triggered.connect(self.form_widget.nOpen)
+        quit_action.triggered.connect(self.quit_trigger)
+        save_action.triggered.connect(self.form_widget.nSave)
+         #file.triggered(self.selected)
+
+        self.setWindowTitle('Notepad App')
+        self.resize(600, 400)
+
+        self.show()
+
+    def quit_trigger(self):
+        qApp.quit()
+
+    def selected(self, q):
+        print(q.text() + ' selected')
+
+class Writer(QWidget):
+    def __init__(self):
+        super(Writer, self).__init__()
         self.text = QTextEdit(self)
-        self.open_btn = QPushButton('Open Note')
-        self.clr_btn = QPushButton('Clear Note')
-        self.save_btn = QPushButton('Save Note')
 
         self.init_ui()
 
     def init_ui(self):
         v_layout = QVBoxLayout()
         h_layout = QHBoxLayout()
-        h_layout.addWidget(self.open_btn)
-        h_layout.addWidget(self.save_btn)
-        h_layout.addWidget(self.clr_btn)
 
         v_layout.addWidget(self.text)
         v_layout.addLayout(h_layout)
@@ -29,9 +77,6 @@ class NotePad(QWidget):
         self.setLayout(v_layout)
         self.setWindowTitle('Simple Text Editor')
 
-        self.save_btn.clicked.connect(self.nSave)
-        self.clr_btn.clicked.connect(self.nClear)
-        self.open_btn.clicked.connect(self.nOpen)
         self.show()
 
     def nSave(self):
