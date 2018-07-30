@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication, QTextEdit, QWidget, QPushButton, QVBox
 # This will be a sticky note type app, we'll let the user type in a reminder note and it will save it to a file we can
 # then make another app or adjust this one to display the sticky notes or something
 
+
 class NotePad(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -34,7 +35,6 @@ class NotePad(QMainWindow):
 
         replace_action = QAction('Replace', self)
 
-
         # adding actions
 
         file.addActions([new_action, open_action, save_action, quit_action])
@@ -44,10 +44,8 @@ class NotePad(QMainWindow):
 
         # events
 
-        open_action.triggered.connect(self.form_widget.nOpen)
+        file.triggered.connect(self.respond)
         quit_action.triggered.connect(self.quit_trigger)
-        save_action.triggered.connect(self.form_widget.nSave)
-         #file.triggered(self.selected)
 
         self.setWindowTitle('Notepad App')
         self.resize(600, 400)
@@ -59,6 +57,16 @@ class NotePad(QMainWindow):
 
     def selected(self, q):
         print(q.text() + ' selected')
+
+    def respond(self, q):
+        signal = q.text()
+        if signal == 'New File':
+            self.form_widget.nClear()
+        elif signal == 'Open File':
+            self.form_widget.nOpen()
+        elif signal == 'Save File':
+            self.form_widget.nSave()
+
 
 class Writer(QWidget):
     def __init__(self):
@@ -93,6 +101,7 @@ class Writer(QWidget):
 
     def nClear(self):
         self.text.clear()
+
 
 app = QApplication(sys.argv)
 writer = NotePad()
