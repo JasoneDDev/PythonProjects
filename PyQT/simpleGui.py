@@ -17,22 +17,22 @@ class Window(QtWidgets.QWidget):
         self.l2.setPixmap(QtGui.QPixmap(str(self.fishDict[self.fcount][1][0])))
 
 
-        h_box = QtWidgets.QHBoxLayout()
-        h_box.addStretch()
-        h_box.addWidget(self.l1)
-        h_box.addStretch()
+        self.h_box = QtWidgets.QHBoxLayout()
+        self.h_box.addStretch()
+        self.h_box.addWidget(self.l1)
+        self.h_box.addStretch()
 
-        h_boxImage = QtWidgets.QHBoxLayout()
-        h_boxImage.addStretch()
-        h_boxImage.addWidget(self.l2)
-        h_boxImage.addStretch()
+        self.h_boxImage = QtWidgets.QHBoxLayout()
+        self.h_boxImage.addStretch()
+        self.h_boxImage.addWidget(self.l2)
+        self.h_boxImage.addStretch()
 
-        v_box = QtWidgets.QVBoxLayout()
-        v_box.addWidget(self.btn1)
-        v_box.addLayout(h_box)
-        v_box.addLayout(h_boxImage)
+        self.v_box = QtWidgets.QVBoxLayout()
+        self.v_box.addWidget(self.btn1)
+        self.v_box.addLayout(self.h_box)
+        self.v_box.addLayout(self.h_boxImage)
 
-        self.setLayout(v_box)
+        self.setLayout(self.v_box)
         self.setWindowTitle('Fishy Viewer')
 
         self.btn1.clicked.connect(self.btn1_click)
