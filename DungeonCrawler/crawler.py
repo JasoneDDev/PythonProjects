@@ -16,6 +16,9 @@ def intro():
     t.sleep(2)
     print('The door slams behind you and you hear it lock.', '\n')
     updatePosition(waitingForMove())
+    # look to make this iterrable vs recursive, could do this with a generator script where we send back the
+    # new character position or even just a print of the feedback...
+
 
 
 def updatePosition(dirMoved):
@@ -39,6 +42,7 @@ def updatePosition(dirMoved):
         if direction == 'm':  # map
             print(player_instance.mapHistory)
             updatePosition(waitingForMove())
+            return
 
         if direction == 'a':
             if player_instance.direction == 0 and player_instance.pos[0] < 7: # pointing south
