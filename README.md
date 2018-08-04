@@ -1,4 +1,7 @@
 # PythonProjects
+# - Jeopardy type game -
+Will have some fun sayings from Saskatchewan and we'll be able to guess letters/vowels and have the computer randomly choose a few and then we can guess at the sentence. Guessing correct letters ups your score and guessing correctly quickly is higher points etc. Will save high score out and simulate pushin it to a server... or actually set up a server and push the data.
+
 # - Dungeon Crawler - 
 ![alt text](https://raw.githubusercontent.com/JasoneDDev/PythonProjects/master/dungeonCrawler.PNG)
 Simple text style dungeon crawler to better my undertstanding of the Python syntax, methods, decorators etc.
