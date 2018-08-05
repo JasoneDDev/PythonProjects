@@ -16,12 +16,14 @@ from wordBlock import WordBlockClass
 # - want to do profiling on this project afterwards as a clone so I can show the profiled and fixed versions
 # - want to do a mock server side communication module.
 
-def addLetters(picks, numCap): # need to add cap here so people can;t add all characters and cheat
+
+def addLetters(picks, numCap):  # loads letters using the wordblock's search and swap function
     picks = picks[:numCap]
     for i in picks:
         wbObject.searchAndSwap(wbObject.mainData[wbObject.onSentenceNum], wbObject.visualSentence, i)
         t.sleep(1)
     wbObject.guessedChars = ''.join((wbObject.guessedChars[::]) + (picks))
+    return wbObject.guessedChars
 
 def letsPlay():
     firstpass = True

@@ -29,7 +29,7 @@ class WordBlockClass:
 
         # print(self.visualSentence, end='\n')
         # print(self.mainData[self.onSentenceNum])
-        return True
+        return self.visualSentence
 
     def makeUnique(self, charArray):
         return ''.join(set(charArray.lower()))
@@ -54,6 +54,7 @@ class WordBlockClass:
                 swapArray = swapArray[:i] + letter.upper() + swapArray[i + 1:]
 
         self.visualSentence = swapArray
+        return self.visualSentence
         # looks through main data sentence for specific letter, if found we place that letter in the visual sentence
         # at the same index
 
@@ -63,6 +64,7 @@ class WordBlockClass:
         self.onSentenceNum += 1
         self.makeVisualSentence()
         self.uniqueChars = self.makeUnique(self.mainData[self.onSentenceNum])
+        return [self.visualSentence, self.uniqueChars, self.guessedChars]
 
 
 
