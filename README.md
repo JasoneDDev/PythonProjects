@@ -1,6 +1,7 @@
 # PythonProjects
 # - Jeopardy SK Version - WIP
-Will have some fun sayings from Saskatchewan and we'll be able to guess letters/vowels and have the computer randomly choose a few and then we can guess at the sentence. Guessing correct letters ups your score and guessing correctly quickly is higher points etc. Will save high score out and simulate pushin it to a server... or actually set up a server and push the data.
+Fun sayings from Saskatchewan in a Jeopardy style game. Can choose vowels/consonants and also guess at the sentence. No scoring added yet. This "game" is an example of an iterrative vs recursive program. 
+Still to add is a scoring system, possibly a hint to the sentence and also unit tests and locks so players can't cheat (pick too many letters etc at a time)
 
 # - Dungeon Crawler - 
 ![alt text](https://raw.githubusercontent.com/JasoneDDev/PythonProjects/master/dungeonCrawler.PNG)
