@@ -11,7 +11,7 @@ import random as r
 class WordBlockClass:
     def __init__(self, data):
         self.mainData = data
-        self.guessedChars = []
+        self.guessedChars = ''
         self.visualSentence = ''
         self.onSentenceNum = 0
         self.makeVisualSentence()
@@ -40,7 +40,7 @@ class WordBlockClass:
         return text
 
     def showSIP(self):  # sentence in progress (sip)
-        print(self.visualSentence)
+        return self.visualSentence
 
     def randomChoice(self, selectionArray, numOfReturns = 1):
         return r.sample(selectionArray, numOfReturns)
@@ -56,6 +56,13 @@ class WordBlockClass:
         self.visualSentence = swapArray
         # looks through main data sentence for specific letter, if found we place that letter in the visual sentence
         # at the same index
+
+    def nextSentence(self):
+        #resetting for the next sentence in queue
+        self.guessedChars = ''
+        self.onSentenceNum += 1
+        self.makeVisualSentence()
+        self.uniqueChars = self.makeUnique(self.mainData[self.onSentenceNum])
 
 
 
