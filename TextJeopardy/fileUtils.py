@@ -18,6 +18,5 @@ def LoadDataRandom(dFile, seed = 111): # the seed is for unit tests so we always
     if seed != 111:
         r.seed(seed)
     r.shuffle(data)
-    print(data)
     return data
 
