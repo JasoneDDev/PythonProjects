@@ -20,3 +20,17 @@ def LoadDataRandom(dFile, seed = 111): # the seed is for unit tests so we always
     r.shuffle(data)
     return data
 
+def save2file(file, pname, data):
+    fileout = ''
+    with open(file, "a") as savefile:
+        fileout = pname + ': ' + str(data) + '\n'
+        savefile.write(fileout)
+        savefile.close()
+    return fileout
+
+def readFromFile(file):
+    fileout = ''
+    with open(file, 'r') as readfile:
+        fileout = readfile.read()
+        readfile.close()
+    return fileout

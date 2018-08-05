@@ -1,6 +1,7 @@
 import time as t
 from fileUtils import LoadDataRandom as lDR
 from wordBlock import WordBlockClass
+from scoreKeeper import ScoreKeeper as score
 
 # so things to code
 # - load external file with "sayings" for saskatchewan
@@ -31,17 +32,21 @@ def letsPlay():
 
     while playing:
         if(firstpass):
+            # start off at 100pts
+            myscore.add2score(100)
+            print('--High Scores--\n\n', myscore.getFromFile())
             print("Welcome to SK Jeopardy!\n\nThere's many great saying in Saskatchewan, let's see if you know your stuff!")
             t.sleep(2)
             print("Here's how the game is played.\nThe computer will choose 1 vowel and 2 consonants, and we'll fill those in on the board.\n"
                   "Then you get to pick 2 more consonants and one more vowel.\nThen it's time to make a guess!")
             t.sleep(1)
             print("If you guess right you win, but if you guess wrong it's gonna cost you points and then you'll have to pick one more consonant OR vowel"
-                  " then guess again.")
+                  " then guess again.\n\nWe'll start you off with 100pts.")
             t.sleep(1)
         else:
             print("\n\n------------------------------------------------------------------------------------------------\n"
-                  "Are you ready for the next sentence? Awesome, by now you know the rules so let's have a look at the sentence.\n\n")
+                  "Are you ready for the next sentence? Awesome, by now you know the rules so let's have a look at the sentence.\n\n"
+                  "Your current score is now {}".format(myscore.echoScore()))
             print(wbObject.showSIP())
             t.sleep(1)
         firstpass = False
@@ -77,7 +82,9 @@ def letsPlay():
         playing2 = True
 
         while playing2 == True:
-            # pick consonats/vowels
+            # pick consonats/vowels -5pts
+            myscore.subFromScore(5)
+            print('Current score is: {}'.format(myscore.echoScore()), 'pts')
             userPick = input("Please pick another consonant or vowel: ")
             print("Great! Let's add that in and have a look.")
             addLetters(userPick, 1)
@@ -88,12 +95,15 @@ def letsPlay():
             if guessq == 'y':
                 print("\nPreviously guessed letters: ", wbObject.guessedChars)
                 guess = input('Please type in your guess, make sure to include all , . etc.: ')
-                # make guess
+                # make guess win 25pts or loose 10pts
                 if guess.lower() == wbObject.mainData[wbObject.onSentenceNum].lower():
+                    myscore.add2score(25)
                     print('you win! ', wbObject.mainData[wbObject.onSentenceNum])
                     t.sleep(1)
                     if(wbObject.onSentenceNum + 1 >= len(wbObject.mainData)):
-                        print("That's it! you made it all the way to the end! Congrats!")
+                        print("That's it! you made it all the way to the end! Congrats!\nYour highscore is {}".format(myscore.echoScore()))
+                        myscore.saveScore2File(input('Please type your name for the high score: '))
+                        print(myscore.echoScore())
                         playing = False
                         playing2 = False
                         break
@@ -102,9 +112,10 @@ def letsPlay():
                         playing2 = False
                     #is right? start new word
                 else:
+                    myscore.subFromScore(10)
                     print("Whoops! That's incorrect, but don't worry you can keep playing.\n")
                     t.sleep(1)
-                    #is wrong continue with loop
+                    #is wrong continue with loop... loose 10pts
             else:
                 print("No worries, let's add some more letters then.")
                 pass
@@ -113,6 +124,7 @@ def letsPlay():
 wbObject = WordBlockClass(lDR("data.txt"))
 t.sleep(2)
 # print(wbObject.showSIP())
+myscore = score()
 letsPlay()
 
 # print(wbObject.mainData[wbObject.onSentenceNum])

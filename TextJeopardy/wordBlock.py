@@ -18,7 +18,7 @@ class WordBlockClass:
         self.letters = ('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z')
         self.vowels = ('a', 'e', 'i', 'o', 'u', 'y')
         self.uniqueChars = self.makeUnique(self.mainData[self.onSentenceNum])
-        print("Word Block Data Created.")
+        # print("Word Block Data Created.")
 
     def makeVisualSentence(self):
         self.visualSentence = self.mainData[self.onSentenceNum]
