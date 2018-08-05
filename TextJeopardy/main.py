@@ -1,5 +1,5 @@
 import time as t
-from fileUtils import LoadData as lD
+from fileUtils import LoadDataRandom as lDR
 from wordBlock import WordBlockClass
 
 # so things to code
@@ -110,7 +110,7 @@ def letsPlay():
                 pass
             #guess no: continue loop
 
-wbObject = WordBlockClass(lD("data.txt"))
+wbObject = WordBlockClass(lDR("data.txt"))
 t.sleep(2)
 # print(wbObject.showSIP())
 letsPlay()
