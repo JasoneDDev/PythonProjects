@@ -1,5 +1,5 @@
 # PythonProjects
-# - Jeopardy type game -
+# - Jeopardy SK Version - WIP
 Will have some fun sayings from Saskatchewan and we'll be able to guess letters/vowels and have the computer randomly choose a few and then we can guess at the sentence. Guessing correct letters ups your score and guessing correctly quickly is higher points etc. Will save high score out and simulate pushin it to a server... or actually set up a server and push the data.
 
 # - Dungeon Crawler - 
@@ -13,9 +13,9 @@ can be added and called on any function to return a profiler file to them be vie
 
 # - PyQt : Fish Viewer -
 Fish PyQT image viewer with labels. Three fish pics to cycle through with title. Pretty simple example.
-# - PyQt : Notepad app -
+# - PyQt : Notepad app - WIP
 simple notepad app I am making and adding to.
-# - PyQt : Sticky Note creator -
+# - PyQt : Sticky Note creator - WIP
 saving notes to a txt file as sticky notes which can then be read in and displayed as a to do list... still in progress
 
 # Other test scripts
