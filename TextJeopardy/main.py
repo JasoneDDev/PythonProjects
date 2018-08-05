@@ -16,7 +16,8 @@ from wordBlock import WordBlockClass
 # - want to do profiling on this project afterwards as a clone so I can show the profiled and fixed versions
 # - want to do a mock server side communication module.
 
-def addLetters(picks): # need to add cap here so people can;t add all characters and cheat
+def addLetters(picks, numCap): # need to add cap here so people can;t add all characters and cheat
+    picks = picks[:numCap]
     for i in picks:
         wbObject.searchAndSwap(wbObject.mainData[wbObject.onSentenceNum], wbObject.visualSentence, i)
         t.sleep(1)
@@ -37,19 +38,21 @@ def letsPlay():
                   " then guess again.")
             t.sleep(1)
         else:
-            print("Are you ready for the next sentence? Awesome, by now you know the rules so let's have a look at the sentence.")
+            print("\n\n------------------------------------------------------------------------------------------------\n"
+                  "Are you ready for the next sentence? Awesome, by now you know the rules so let's have a look at the sentence.\n\n")
             print(wbObject.showSIP())
             t.sleep(1)
         firstpass = False
         print("\nFirst let's get the computer to pick 4 consonants.")
         compPicks = ''.join(set(wbObject.randomChoice(wbObject.letters, 4)))
-        print("The computer picked ", compPicks, ' as the consonants.\n')
+        t.sleep(1)
+        print("The computer picked --", compPicks, '-- as the consonants.\n')
         compVpick = ''.join(set(wbObject.randomChoice(wbObject.vowels, 2)))
 
         print("And for the vowels it picked: ", compVpick, '')
         print("\nLet's add those in and have a look.")
-        addLetters(compPicks)
-        addLetters(compVpick)
+        addLetters(compPicks, 4)
+        addLetters(compVpick, 2)
 
         print(wbObject.showSIP())
         print("\nWow, that looks better! Now it's your turn to pick some.\n")
@@ -63,8 +66,8 @@ def letsPlay():
         while vowPick == '':
             vowPick = input("Please type in 1 vowel: ")
         print("\nThanks! Let's add those in and see.")
-        addLetters(conPick)
-        addLetters(vowPick)
+        addLetters(conPick, 2)
+        addLetters(vowPick, 1)
 
         t.sleep(1)
 
@@ -75,17 +78,18 @@ def letsPlay():
             # pick consonats/vowels
             userPick = input("Please pick another consonant or vowel: ")
             print("Great! Let's add that in and have a look.")
-            addLetters(userPick)
+            addLetters(userPick, 1)
             print(wbObject.showSIP())
             t.sleep(1)
             # guess yes
             guessq = input('Would you like to make a guess? (y/n): ')
             if guessq == 'y':
+                print("\nPreviously guessed letters: ", wbObject.guessedChars)
                 guess = input('Please type in your guess, make sure to include all , . etc.: ')
                 # make guess
                 if guess.lower() == wbObject.mainData[wbObject.onSentenceNum].lower():
                     print('you win! ', wbObject.mainData[wbObject.onSentenceNum])
-
+                    t.sleep(1)
                     if(wbObject.onSentenceNum + 1 >= len(wbObject.mainData)):
                         print("That's it! you made it all the way to the end! Congrats!")
                         playing = False
@@ -106,7 +110,7 @@ def letsPlay():
 
 wbObject = WordBlockClass(lD("data.txt"))
 t.sleep(2)
-print(wbObject.showSIP())
+# print(wbObject.showSIP())
 letsPlay()
 
 # print(wbObject.mainData[wbObject.onSentenceNum])
