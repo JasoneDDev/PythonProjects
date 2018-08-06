@@ -10,10 +10,12 @@ class ScoreKeeper:
 
     def add2score(self, scoreint):
         self.userScore += scoreint
+        return self.userScore
         # print(self.userScore)
 
     def subFromScore(self, scoreint):
         self.userScore -= scoreint
+        return self.userScore
         # print(self.userScore)
 
     def saveScore2File(self, pname):
