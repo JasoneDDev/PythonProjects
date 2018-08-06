@@ -1,9 +1,9 @@
 # PythonProjects
 # - Jeopardy SK Version - WIP
-Fun sayings from Saskatchewan in a Jeopardy style game. Can choose vowels/consonants and also guess at the sentence. No scoring added yet. This "game" is an example of an iterrative vs recursive program. 
-Still to add is a scoring system, possibly a hint to the sentence and also unit tests and locks so players can't cheat (pick too many letters etc at a time)
+Fun sayings from Saskatchewan in a Jeopardy style game. Can choose vowels/consonants and also guess at the sentence. We also have a scoring system that for now simply show the previous scorez. This "game" is using an iterrative method since it's a less processor intensive method.. 
+Still to add is possibly a hint to the sentence and also unit tests.
 
-# - Dungeon Crawler - 
+# - Dungeon Crawler - should rewrite this program**
 ![alt text](https://raw.githubusercontent.com/JasoneDDev/PythonProjects/master/dungeonCrawler.PNG)
 Simple text style dungeon crawler to better my undertstanding of the Python syntax, methods, decorators etc.
 The game starts with you entering a door in the side of a mountain side, the door slams behind you and now you're trapped. You need to find you way through the (currently 8x8) dungeon to find the key and make your way back to the door to exit and escape.
