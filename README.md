@@ -1,4 +1,7 @@
 # PythonProjects
+# - Zoanthid ID database find - 
+Just trying to think of other projects to do to hone my skills. 
+This will be a database I can add to and search for zoanthid ID's. Will take in parameters like face color, skirt color, pattern type, etc to try and narrow down the type of zoanthid. Good practice for doing searching a database of sorts. Will load database from file and save to file as well.
 # - Jeopardy SK Version - WIP
 Fun sayings from Saskatchewan in a Jeopardy style game. Can choose vowels/consonants and also guess at the sentence. We also have a scoring system that for now simply show the previous scorez. This "game" is using an iterrative method since it's a less processor intensive method.. 
 Still to add is possibly a hint to the sentence and also unit tests.
