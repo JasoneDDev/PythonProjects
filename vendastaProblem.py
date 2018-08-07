@@ -2,7 +2,7 @@
 
 #11 boxes max 3 and needs to be split 5 way
 
-boxes = 11
+boxes = 13
 max_height = 3
 
 numOfStacks =0
@@ -13,6 +13,8 @@ def splitDivide(quantity, maxHeight):
       b = quantity % 2 + a
       print(a,b)
       return a, b
+
+
 
 if boxes > max_height:
     a,b = splitDivide(boxes, max_height)
@@ -47,11 +49,27 @@ if boxes > max_height:
     if b > max_height:
         cc, dd = splitDivide(b, max_height)
         if cc > max_height:
-            pass
+            ccc, ddd = splitDivide(cc, max_height)
+            if ccc > max_height:
+                pass
+            else:
+                numOfStacks+=1
+            if ddd > max_height:
+                pass
+            else:
+                numOfStacks+=1
         else:
             numOfStacks+=1
         if dd > max_height:
-            pass
+            ccc, ddd = splitDivide(dd, max_height)
+            if ccc > max_height:
+                pass
+            else:
+                numOfStacks += 1
+            if ddd > max_height:
+                pass
+            else:
+                numOfStacks += 1
         else:
             numOfStacks+=1
     else:
